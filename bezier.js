@@ -1,5 +1,5 @@
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(800, 400);
   }
   
   function draw() {
@@ -17,24 +17,27 @@ function setup() {
     
     noFill();
     stroke(0);
-    strokeWeight(1);
+    strokeWeight(4);
     bezier(head.x, head.y, tail.x, tail.y, cont1.x, cont1.y, cont2.x, cont2.y);
     
-    
-    if (pow(mouseX - head.x, 2) + pow(mouseY - head.y, 2) <= pow(PointRad, 2)) {
-      push();
-      stroke(200, 100, 100);
-      strokeWeight(PointRad * 2 + 5);
-      point(head.x, head.y);
-      pop();
+    // highlight node
+    for (let p of points) {
+      if (pow(mouseX - p.x, 2) + pow(mouseY - p.y, 2) <= pow(PointRad, 2)) {
+        push();
+        stroke(200, 100, 100);
+        strokeWeight(PointRad * 2 + 5);
+        point(p.x, p.y);
+        pop();
+      }
     }
-    
   }
-  // Task: on click select a node, while mouse down node follows, on release Selected = null
+  
   function mousePressed() {
-    // iterate points to check if mouseover any of them
-    if (pow(mouseX - head.x, 2) + pow(mouseY - head.y, 2) <= pow(PointRad, 2)) {
-      selected = head;
+    for (let point of points) {
+      if (pow(mouseX - point.x, 2) + pow(mouseY - point.y, 2) <= pow(PointRad, 2)) {
+        selected = point;
+        break;
+      }
     }
   }
   
@@ -50,10 +53,12 @@ function setup() {
     selected.y += movedY;
   }
   
-  const PointRad = 20;
+  const PointRad = 10;
   
   // make only one node selectable at a time
   let selected = null;
+  
+  let points = [];
   
   class Point {
     constructor(x, y) {
@@ -64,7 +69,12 @@ function setup() {
   
   let head = new Point(350, 50);
   let tail = new Point(50, 50);
-    
+  
   let cont1 = new Point(390, 390);
   let cont2 = new Point(50, 350);
+  
+  points.push(head);
+  points.push(tail);
+  points.push(cont1);
+  points.push(cont2);
   
