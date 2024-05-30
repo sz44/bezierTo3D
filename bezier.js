@@ -23,6 +23,22 @@ function draw() {
             cursor(MOVE);
         }
     }
+
+    // fix boundry gap formed when mouse moves fast off canvas
+    if (selected) {
+        if (mouseX >= width && selected.x <= width - PointRad) {
+            selected.x = width - PointRad;
+        }
+        if (mouseX <= 0 && selected.x >= PointRad) {
+            selected.x = PointRad;
+        }
+        if (mouseY >= height && selected.y <= height - PointRad) {
+            selected.y = height - PointRad;
+        }
+        if (mouseY <= 0 && selected.y >= PointRad) {
+            selected.y = PointRad;
+        }
+    }
 }
 
 function mousePressed() {
