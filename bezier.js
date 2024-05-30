@@ -3,10 +3,8 @@ function setup() {
 }
 
 function draw() {
-    //Task: make bezier curve dynamic, able to change by moving points.
-    //Task: create new curves from clicks
     background(200);
-
+    cursor(ARROW);
 
     stroke(255, 0, 0);
     strokeWeight(PointRad * 2);
@@ -20,14 +18,9 @@ function draw() {
     strokeWeight(4);
     bezier(head.x, head.y, tail.x, tail.y, cont1.x, cont1.y, cont2.x, cont2.y);
 
-    // highlight node
     for (let p of points) {
         if (pow(mouseX - p.x, 2) + pow(mouseY - p.y, 2) <= pow(PointRad, 2)) {
-            push();
-            stroke(200, 100, 100);
-            strokeWeight(PointRad * 2 + 5);
-            point(p.x, p.y);
-            pop();
+            cursor(MOVE);
         }
     }
 }
@@ -49,17 +42,21 @@ function mouseDragged() {
     if (selected === null) {
         return;
     }
-    if (selected.x + movedX - PointRad >= 0 && selected.x + movedX + PointRad <= width) {
-        selected.x += movedX;
+    // Calculate the new position
+    let newX = selected.x + movedX;
+    let newY = selected.y + movedY;
+
+    // Constrain the new position to the canvas boundaries
+    if (newX >= 0 && newX <= width) {
+        selected.x = newX;
     }
-    if (selected.y + movedY - PointRad >= 0 && selected.y + movedY + PointRad <= height) {
-        selected.y += movedY;
+    if (newY >= 0 && newY <= height) {
+        selected.y = newY;
     }
 }
 
 const PointRad = 10;
 
-// make only one node selectable at a time
 let selected = null;
 
 let points = [];
