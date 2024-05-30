@@ -29,6 +29,8 @@ function mousePressed() {
     for (let point of points) {
         if (pow(mouseX - point.x, 2) + pow(mouseY - point.y, 2) <= pow(PointRad, 2)) {
             selected = point;
+            offsetX = mouseX - point.x;
+            offsetY = mouseY - point.y;
             break;
         }
     }
@@ -43,14 +45,14 @@ function mouseDragged() {
         return;
     }
     // Calculate the new position
-    let newX = selected.x + movedX;
-    let newY = selected.y + movedY;
+    let newX = mouseX - offsetX;
+    let newY = mouseY - offsetY;
 
     // Constrain the new position to the canvas boundaries
-    if (newX >= 0 && newX <= width) {
+    if (newX >= PointRad && newX <= width - PointRad) {
         selected.x = newX;
     }
-    if (newY >= 0 && newY <= height) {
+    if (newY >= PointRad && newY <= height - PointRad) {
         selected.y = newY;
     }
 }
@@ -58,6 +60,8 @@ function mouseDragged() {
 const PointRad = 10;
 
 let selected = null;
+let offsetX = 0;
+let offsetY = 0;
 
 let points = [];
 
