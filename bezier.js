@@ -1,7 +1,9 @@
 function setup() {
-    createCanvas(800, 400);
+    createCanvas(800, 800);
 }
 
+//Task: create new curves from clicks
+//Task: tools: node-tool, move-resize-tool
 function draw() {
     background(200);
     cursor(ARROW);
@@ -16,7 +18,7 @@ function draw() {
     noFill();
     stroke(0);
     strokeWeight(4);
-    bezier(head.x, head.y, tail.x, tail.y, cont1.x, cont1.y, cont2.x, cont2.y);
+    bezier(head.x, head.y, cont1.x, cont1.y, cont2.x, cont2.y, tail.x, tail.y);
 
     for (let p of points) {
         if (pow(mouseX - p.x, 2) + pow(mouseY - p.y, 2) <= pow(PointRad, 2)) {
