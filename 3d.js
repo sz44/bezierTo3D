@@ -5,16 +5,21 @@ function setup() {
   function draw() {
     background(200);
   
-    //stroke(2);
-    //noStroke();
+    // Set up lights
+    // ambientLight(50); // Ambient light for general illumination
+    // directionalLight(255, 255, 255, 0.25, 0.25, -0.9); // White directional light
+    // directionalLight(255, 255, 255, -1, 1, 1); // White directional light
+    // pointLight(255, 0, 0, 200, -200, 300); // Red point light for effect
+    // stroke(10);
+    // noStroke();
     fill(67, 153, 114);
   
-    let angleStep = PI / 36; // Adjust the step for smoother shape
-    let detail = 50; // Number of points on the bezier curve
+    let angleStep = PI / 12; // Adjust the step for smoother shape
+    let detail = 10; // Number of points on the bezier curve
   
      // Draw outer surface
     for (let theta = 0; theta < TWO_PI; theta += angleStep) {
-      beginShape(POINTS);
+      beginShape(QUAD_STRIP);
       for (let t = 0; t <= 1; t += 1 / detail) {
         let x = bezierPoint(head.x, cont1.x, cont2.x, tail.x, t);
         let y = bezierPoint(head.y, cont1.y, cont2.y, tail.y, t);
@@ -61,7 +66,7 @@ function setup() {
     }
   }
   
-  let head = new Point(0, -100);
+  let head = new Point(50, -100);
   let tail = new Point(50, 100);
   let cont1 = new Point(80, 50);
   let cont2 = new Point(380, 30);
