@@ -7,7 +7,7 @@ function setup() {
 }
 
 function draw() {
-  background(200);
+  background(100);
 
   // Set up lights
   ambientLight(255); // General low-level ambient light
