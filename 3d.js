@@ -7,22 +7,27 @@ function setup() {
 }
 
 function draw() {
-  background(100);
+  background(80);
 
   // Set up lights
-  ambientLight(255); // General low-level ambient light
+  ambientLight(50); // General low-level ambient light
   // directionalLight(255, 255, 255, 0.95, 0.25, -1); // White directional light
+  directionalLight(outerColor, 0.1, 0.2, 0);
   // pointLight(255, 255, 255, 200, -200, 300); // White point light
-
+  // box(400);
+  // normalMaterial();
+  // noStroke();
+  // sphere();
   // Outer surface material
-  ambientMaterial(outerColor);
+  // ambientMaterial(outerColor);
   // Draw outer surface
-  drawSurface();
+  // fill(outerColor);
+  drawSurface(angleStep, detail, 0);
 
   // Inner surface material
-  ambientMaterial(innerColor);
+  // ambientMaterial(innerColor);
   // Draw inner surface
-  drawSurface(PI/12, 10, 15); 
+  // drawSurface(angleStep, detail, 15); 
 
   orbitControl();
 }
@@ -42,7 +47,12 @@ function drawSurface(angleStep = PI / 12, detail = 10, offsetStart = 0) {
       let newZ1 = x * sin(theta);
       let newX2 = x * cos(theta + angleStep);
       let newZ2 = x * sin(theta + angleStep);
-      
+
+      let normalX = cos(theta);
+      let normalZ = sin(theta);
+
+      normal(normalX, 0, normalZ);
+
       vertex(newX1, y, newZ1);
       vertex(newX2, y, newZ2);
     }
@@ -50,11 +60,13 @@ function drawSurface(angleStep = PI / 12, detail = 10, offsetStart = 0) {
   }
 }
 
-let angleStep = Math.PI / 12; // Adjust the step for smoother shape
+let angleStep = Math.PI / 24; // Adjust the step for smoother shape
 let detail = 10; // Number of points on the bezier curve
 
 let outerColor = null;
 let innerColor = null;
+let green1Light = "hsl(153, 39%, 60%)";
+let green1Dark = "hsl(152, 39%, 20%)";
 
 class Point {
   constructor(x, y) {
