@@ -16,62 +16,42 @@ function draw() {
 
   // Outer surface material
   ambientMaterial(outerColor);
-
-  let angleStep = PI / 12; // Adjust the step for smoother shape
-  let detail = 10; // Number of points on the bezier curve
-
   // Draw outer surface
-  for (let theta = 0; theta < TWO_PI; theta += angleStep) {
-    beginShape(QUAD_STRIP);
-    for (let t = 0; t <= 1; t += 1 / detail) {
-      let x = bezierPoint(head.x, cont1.x, cont2.x, tail.x, t);
-      let y = bezierPoint(head.y, cont1.y, cont2.y, tail.y, t);
-      
-      let newX1 = x * cos(theta);
-      let newZ1 = x * sin(theta);
-      let newX2 = x * cos(theta + angleStep);
-      let newZ2 = x * sin(theta + angleStep);
+  drawSurface();
 
-      vertex(newX1, y, newZ1);
-      vertex(newX2, y, newZ2);
-    }
-    endShape();
-  }
-
-  
   // Inner surface material
-  // fill(47, 113, 84);
   ambientMaterial(innerColor);
-
   // Draw inner surface
+  drawSurface(PI/12, 10, 15); 
+
+  orbitControl();
+}
+
+function drawSurface(angleStep = PI / 12, detail = 10, offsetStart = 0) {
   for (let theta = 0; theta < TWO_PI; theta += angleStep) {
     beginShape(QUAD_STRIP);
     for (let t = 0; t <= 1; t += 1 / detail) {
-      // let x = bezierPoint(innerHead.x, innerCont1.x, innerCont2.x, innerTail.x, t);
-      // let y = bezierPoint(innerHead.y, innerCont1.y, innerCont2.y, innerTail.y, t);
-      let offset = 10;
-      if (t === 0) {
-        offset = 0;
-      }
-      if (abs(t - 1) <= 0.0001) {
+      let offset = offsetStart;
+      if (t === 0 || abs(t-1) <= 0.0001) {
         offset = 0;
       }
       let x = bezierPoint(head.x, cont1.x, cont2.x, tail.x, t) - offset;
       let y = bezierPoint(head.y, cont1.y, cont2.y, tail.y, t);
-      
+
       let newX1 = x * cos(theta);
       let newZ1 = x * sin(theta);
       let newX2 = x * cos(theta + angleStep);
       let newZ2 = x * sin(theta + angleStep);
-
+      
       vertex(newX1, y, newZ1);
       vertex(newX2, y, newZ2);
     }
     endShape();
   }
-  
-  orbitControl();
 }
+
+let angleStep = Math.PI / 12; // Adjust the step for smoother shape
+let detail = 10; // Number of points on the bezier curve
 
 let outerColor = null;
 let innerColor = null;
