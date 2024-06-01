@@ -1,7 +1,7 @@
 function setup() {
   createCanvas(1200, 800, WEBGL);
 
-  colorMode(HSL)
+  colorMode(HSL);
   outerColor = color(153, 39, 60);
   innerColor = color(153, 39, 20);
 }

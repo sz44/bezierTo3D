@@ -1,10 +1,7 @@
 function setup() {
-    createCanvas(1200, 800, WEBGL);
-
-    
+    createCanvas(800, 800, bezierCanvas);
+    background(200);
 }
 
-
 function draw() {
-
 }
