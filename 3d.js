@@ -12,16 +12,17 @@ function draw() {
   // Set up lights
   ambientLight(50); // General low-level ambient light
   // directionalLight(255, 255, 255, 0.95, 0.25, -1); // White directional light
-  directionalLight(outerColor, 0.1, 0.2, 0);
+  // directionalLight(color(white), 0.4, -1, 0);
+  directionalLight(color(white), 1, -1, 0);
   // pointLight(255, 255, 255, 200, -200, 300); // White point light
   // box(400);
   // normalMaterial();
-  // noStroke();
-  // sphere();
+  // stroke(45);
+  // sphere(200);
   // Outer surface material
   // ambientMaterial(outerColor);
   // Draw outer surface
-  // fill(outerColor);
+  fill(outerColor);
   drawSurface(angleStep, detail, 0);
 
   // Inner surface material
@@ -48,12 +49,19 @@ function drawSurface(angleStep = PI / 12, detail = 10, offsetStart = 0) {
       let newX2 = x * cos(theta + angleStep);
       let newZ2 = x * sin(theta + angleStep);
 
-      let normalX = cos(theta);
-      let normalZ = sin(theta);
+      // let normalX = cos(theta);
+      // let normalZ = sin(theta);
 
-      normal(normalX, 0, normalZ);
+      // Compute normals for lighting
+      let normalX1 = cos(theta);
+      let normalZ1 = sin(theta);
+      let normalX2 = cos(theta + angleStep);
+      let normalZ2 = sin(theta + angleStep);
 
+      // normal(normalX, 0, normalZ);
+      normal(normalX1, 0, normalZ1);
       vertex(newX1, y, newZ1);
+      normal(normalX2, 0, normalZ2);
       vertex(newX2, y, newZ2);
     }
     endShape();
@@ -67,6 +75,7 @@ let outerColor = null;
 let innerColor = null;
 let green1Light = "hsl(153, 39%, 60%)";
 let green1Dark = "hsl(152, 39%, 20%)";
+let white = "rgb(255,255,255)";
 
 class Point {
   constructor(x, y) {
