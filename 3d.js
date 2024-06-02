@@ -10,11 +10,12 @@ function draw() {
   background(80);
 
   // Set up lights
-  ambientLight(50); // General low-level ambient light
+  // ambientLight(50); // General low-level ambient light
   // directionalLight(255, 255, 255, 0.95, 0.25, -1); // White directional light
   // directionalLight(color(white), 0.4, -1, 0);
-  directionalLight(color(white), 1, -1, 0);
+  // directionalLight(color(white), 1, -1, 0);
   // pointLight(255, 255, 255, 200, -200, 300); // White point light
+  // fill(outerColor);
   // box(400);
   // normalMaterial();
   // stroke(45);
@@ -24,7 +25,6 @@ function draw() {
   // Draw outer surface
   fill(outerColor);
   drawSurface(angleStep, detail, 0);
-
   // Inner surface material
   // ambientMaterial(innerColor);
   // Draw inner surface
@@ -43,29 +43,21 @@ function drawSurface(angleStep = PI / 12, detail = 10, offsetStart = 0) {
       }
       let x = bezierPoint(head.x, cont1.x, cont2.x, tail.x, t) - offset;
       let y = bezierPoint(head.y, cont1.y, cont2.y, tail.y, t);
+      let tmp = 100;
+      let newX1 = x * cos(theta + tmp);
+      let newZ1 = x * sin(theta + tmp);
+      let newX2 = x * cos(theta + angleStep + tmp);
+      let newZ2 = x * sin(theta + angleStep + tmp);
 
-      let newX1 = x * cos(theta);
-      let newZ1 = x * sin(theta);
-      let newX2 = x * cos(theta + angleStep);
-      let newZ2 = x * sin(theta + angleStep);
-
-      // let normalX = cos(theta);
-      // let normalZ = sin(theta);
-
-      // Compute normals for lighting
-      let normalX1 = cos(theta);
-      let normalZ1 = sin(theta);
-      let normalX2 = cos(theta + angleStep);
-      let normalZ2 = sin(theta + angleStep);
-
-      // normal(normalX, 0, normalZ);
-      normal(normalX1, 0, normalZ1);
-      vertex(newX1, y, newZ1);
-      normal(normalX2, 0, normalZ2);
-      vertex(newX2, y, newZ2);
+      vertex(newX1, y + tmp, newZ1);
+      vertex(newX2, y + tmp, newZ2);
     }
     endShape();
   }
+}
+
+function mouseDragged() {
+
 }
 
 let angleStep = Math.PI / 24; // Adjust the step for smoother shape
