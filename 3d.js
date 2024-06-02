@@ -24,6 +24,8 @@ function draw() {
   // ambientMaterial(outerColor);
   // Draw outer surface
   fill(outerColor);
+  translate(-150,0);
+  rotateX(300);
   drawSurface(angleStep, detail, 0);
   // Inner surface material
   // ambientMaterial(innerColor);
