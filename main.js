@@ -91,7 +91,7 @@ function surfaceSketch(p) {
         p.background(255);
         p.translate(0, -p.height/4);
         p.scale(1/2);
-        p.rotateX(p.PI/2)
+        p.fill(p.color(green1Light));
         for (let theta = 0; theta < p.TWO_PI; theta += angleStep) {
             p.beginShape(p.QUAD_STRIP);
             for (let t = 0; t <= 1.001; t += 1 / detail) {
@@ -111,6 +111,10 @@ function surfaceSketch(p) {
     p.orbitControl();
     }
 }
+
+let green1Light = "hsl(153, 39%, 60%)";
+let green1Dark = "hsl(152, 39%, 20%)";
+let white = "rgb(255,255,255)";
 
 // limit = 1000, if need more change above to t <= 1.0001 to cache decimal error
 let detail = 20;
