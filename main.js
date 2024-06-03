@@ -81,14 +81,20 @@ function bezierSketch(p) {
 
 function surfaceSketch(p) {
     p.setup = () => {
-        p.createCanvas(800, 800, p.WEBGL, surfaceCanvas );
+        p.createCanvas(800, 800, p.WEBGL, surfaceCanvas);
+
+        // let cam = p.createCamera();
+        // cam.setPosition(0, p.height/2, 800);
+        // cam.lookAt(0, 0, 0);
     }
     p.draw = () => {
         p.background(255);
-        p.translate(0, -p.height/2);
+        p.translate(0, -p.height/4);
+        p.scale(1/2);
+        p.rotateX(p.PI/2)
         for (let theta = 0; theta < p.TWO_PI; theta += angleStep) {
             p.beginShape(p.QUAD_STRIP);
-            for (let t = 0; t <= 1; t += 1 / detail) {
+            for (let t = 0; t <= 1.001; t += 1 / detail) {
                 let x = p.bezierPoint(head.x, cont1.x, cont2.x, tail.x, t);
                 let y = p.bezierPoint(head.y, cont1.y, cont2.y, tail.y, t);
 
@@ -106,7 +112,8 @@ function surfaceSketch(p) {
     }
 }
 
-let detail = 10;
+// limit = 1000, if need more change above to t <= 1.0001 to cache decimal error
+let detail = 20;
 let angleStep = Math.PI / 12;
 
 const PointRad = 10;
