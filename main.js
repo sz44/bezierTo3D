@@ -13,6 +13,7 @@ function bezierSketch(p) {
         p.point(cont1.x, cont1.y);
         p.point(cont2.x, cont2.y);
 
+        /*
         p.push();
         p.noStroke();
         p.fill(0,0,0);
@@ -22,7 +23,8 @@ function bezierSketch(p) {
         p.text(`${cont1.x}, ${cont1.y}`, cont1.x + 15, cont1.y);
         p.text(`${cont2.x}, ${cont2.y}`, cont2.x + 15, cont2.y);
         p.pop();
-    
+        */
+
         p.noFill();
         p.stroke(0);
         p.strokeWeight(4);
@@ -59,18 +61,18 @@ function bezierSketch(p) {
         let newY = p.mouseY - offsetY;
     
         // Constrain the new position to the canvas boundaries, snap to end if mouse outside canvas
-        if (newX <= PointRad) {
-            selected.x = PointRad;
-        } else if (newX >= p.width - PointRad) {
-            selected.x = p.width - PointRad;
+        if (newX <= 0) {
+            selected.x = 0;
+        } else if (newX >= p.width - 0) {
+            selected.x = p.width - 0;
         } else {
             selected.x = newX;
         }
     
-        if (newY <= PointRad) {
-            selected.y = PointRad;
-        } else if (newY >= p.height - PointRad) {
-            selected.y = p.height - PointRad;
+        if (newY <= 0) {
+            selected.y = 0;
+        } else if (newY >= p.height - 0) {
+            selected.y = p.height - 0;
         } else {
             selected.y = newY;
         }
@@ -122,11 +124,11 @@ class Point {
     }
 }
 
-let head = new Point(350, 50);
-let tail = new Point(50, 50);
+let head = new Point(111, 290);
+let tail = new Point(0, 529);
 
-let cont1 = new Point(390, 390);
-let cont2 = new Point(50, 350);
+let cont1 = new Point(523, 65);
+let cont2 = new Point(732, 650);
 
 points.push(head);
 points.push(tail);
