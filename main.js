@@ -12,6 +12,16 @@ function bezierSketch(p) {
         p.point(tail.x, tail.y);
         p.point(cont1.x, cont1.y);
         p.point(cont2.x, cont2.y);
+
+        p.push();
+        p.noStroke();
+        p.fill(0,0,0);
+        p.textSize(24);
+        p.text(`${head.x}, ${head.y}`, head.x + 15, head.y);
+        p.text(`${tail.x}, ${tail.y}`, tail.x + 15, tail.y);
+        p.text(`${cont1.x}, ${cont1.y}`, cont1.x + 15, cont1.y);
+        p.text(`${cont2.x}, ${cont2.y}`, cont2.x + 15, cont2.y);
+        p.pop();
     
         p.noFill();
         p.stroke(0);
@@ -73,7 +83,7 @@ function surfaceSketch(p) {
     }
     p.draw = () => {
         p.background(255);
-
+        p.translate(0, -p.height/2);
         for (let theta = 0; theta < p.TWO_PI; theta += angleStep) {
             p.beginShape(p.QUAD_STRIP);
             for (let t = 0; t <= 1; t += 1 / detail) {
