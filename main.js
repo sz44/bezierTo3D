@@ -1,6 +1,6 @@
 function bezierSketch(p) {
     p.setup = () => {
-        p.createCanvas(800, 800, bezierCanvas );
+        p.createCanvas(p.windowWidth/2, p.windowHeight, bezierCanvas );
     }
     p.draw = () => {
         p.background(255);
@@ -81,7 +81,7 @@ function bezierSketch(p) {
 
 function surfaceSketch(p) {
     p.setup = () => {
-        p.createCanvas(800, 800, p.WEBGL, surfaceCanvas);
+        p.createCanvas(p.windowWidth/2, p.windowHeight, p.WEBGL, surfaceCanvas);
 
         // let cam = p.createCamera();
         // cam.setPosition(0, p.height/2, 800);
