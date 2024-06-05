@@ -77,6 +77,9 @@ function bezierSketch(p) {
             selected.y = newY;
         }
     }
+    p.windowResized = () => {
+        p.resizeCanvas(p.windowWidth/2, p.windowHeight);
+    }
 }
 
 function surfaceSketch(p) {
@@ -109,6 +112,9 @@ function surfaceSketch(p) {
             p.endShape();
         }
     p.orbitControl();
+    }
+    p.windowResized = () => {
+        p.resizeCanvas(p.windowWidth/2, p.windowHeight);
     }
 }
 
