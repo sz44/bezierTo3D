@@ -45,6 +45,37 @@ function bezierSketch(p) {
             }
         }
     }
+    p.touchStarted = () => {
+        for (let point of points) {
+            if (p.dist(p.touches[0].x, p.touches[0].y, point.x, point.y) <= PointRad) {
+                selected = point;
+                offsetX = p.touches[0].x - point.x;
+                offsetY = p.touches[0].y - point.y;
+                break;
+            }
+        }
+        return false; // prevent default
+    };
+
+    p.touchEnded = () => {
+        selected = null;
+        return false; // prevent default
+    };
+
+    p.touchMoved = () => {
+        if (selected === null) {
+            return;
+        }
+
+        let newX = p.touches[0].x - offsetX;
+        let newY = p.touches[0].y - offsetY;
+
+        selected.x = p.constrain(newX, 0, p.width);
+        selected.y = p.constrain(newY, 0, p.height);
+
+        return false; // prevent default
+    };
+
     p.mousePressed = () => {
         for (let point of points) {
             if (p.pow(p.mouseX - point.x, 2) + p.pow(p.mouseY - point.y, 2) <= p.pow(PointRad, 2)) {
@@ -109,8 +140,8 @@ function surfaceSketch(p) {
     }
     p.draw = () => {
         p.background(255);
-        p.translate(0, -p.height/4);
-        p.scale(1/2);
+        p.translate(0, -p.height/2);
+        // p.scale(1/2);
         p.fill(p.color(green1Light));
         for (let theta = 0; theta < p.TWO_PI; theta += angleStep) {
             p.beginShape(p.QUAD_STRIP);
