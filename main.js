@@ -1,6 +1,15 @@
 function bezierSketch(p) {
     p.setup = () => {
         p.createCanvas(p.windowWidth/2, p.windowHeight, bezierCanvas );
+        // p.createCanvas(478 , 431, bezierCanvas );
+        head.x = 50;
+        head.y = 50;
+        tail.x = 50;
+        tail.y = p.height - 50;
+        cont1.x = p.width/2;
+        cont1.y = 50;
+        cont2.x = p.width/2;
+        cont2.y = p.height - 50;
     }
     p.draw = () => {
         p.background(255);
@@ -79,6 +88,14 @@ function bezierSketch(p) {
     }
     p.windowResized = () => {
         p.resizeCanvas(p.windowWidth/2, p.windowHeight);
+        head.x = 50;
+        head.y = 50;
+        tail.x = 50;
+        tail.y = p.height - 50;
+        cont1.x = p.width/2;
+        cont1.y = 50;
+        cont2.x = p.width/2;
+        cont2.y = p.height - 50;
     }
 }
 
@@ -141,11 +158,11 @@ class Point {
     }
 }
 
-let head = new Point(111, 290);
-let tail = new Point(0, 529);
+let head = new Point(50, 50);
+let tail = new Point(50, window.screen.height - 50);
 
-let cont1 = new Point(523, 65);
-let cont2 = new Point(732, 650);
+let cont1 = new Point(window.screen.width/2, 50);
+let cont2 = new Point(window.screen.width/2, window.screen.height - 50);
 
 points.push(head);
 points.push(tail);
