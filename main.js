@@ -170,7 +170,7 @@ let green1Light = "hsl(153, 39%, 60%)";
 let green1Dark = "hsl(152, 39%, 20%)";
 let white = "rgb(255,255,255)";
 
-// limit = 1000, if need more change above to t <= 1.0001 to cache decimal error
+// limit = 1000, if need more change above to t <= 1.0001 to catch decimal error
 let detail = 20;
 let angleStep = Math.PI / 12;
 
