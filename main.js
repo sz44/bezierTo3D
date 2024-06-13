@@ -130,6 +130,15 @@ function bezierSketch(p) {
     }
 }
 
+function equationSketch(p) {
+    p.setup = () => {
+
+    }
+    p.draw = () => {
+
+    }
+}
+
 function surfaceSketch(p) {
     p.setup = () => {
         p.createCanvas(p.windowWidth/2, p.windowHeight, p.WEBGL, surfaceCanvas);

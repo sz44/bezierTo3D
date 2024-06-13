@@ -8,8 +8,14 @@
     <script src="main.js"></script>
 </head>
 <body>
+    <div class="menu">
+        <p>Bezier Mode <input type="radio" name="switch" id=""></p>
+        <p>Equation Mode <input type="radio" name="switch" id=""></p>
+    </div>
     <canvas id="surfaceCanvas"></canvas>
     <canvas id="bezierCanvas"></canvas>
+    <canvas id="equationCanvas"></canvas>
+    <input  id="equationInput" type="text">
     <style>
         * {
             box-sizing: border-box;
@@ -26,6 +32,26 @@
             border: 1px solid black;
             width: 800px;
             height: 800px;
+        }
+        #bezierCanvas {
+        }
+        #equationCanvas {
+            display: none;
+        }
+        #equationInput {
+            display: none;
+        }
+        .menu {
+            position: absolute;
+            top: 20px;
+            right: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        } 
+        .menu p {
+            display: flex;
+            gap: 0.25rem;
         }
     </style>
 </body>
