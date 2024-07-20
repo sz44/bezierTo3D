@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.js"></script>
-    <script src="main.js"></script>
 </head>
 <body>
     <div class="menu">
-        <p>Bezier Mode <input type="radio" name="switch" id=""></p>
-        <p>Equation Mode <input type="radio" name="switch" id=""></p>
+        <p>Bezier Mode <input type="radio" name="switch" value="bezier" id="bezierMode" checked></p>
+        <p>Equation Mode <input type="radio" name="switch" value="equation" id="equationMode"></p>
     </div>
     <canvas id="surfaceCanvas"></canvas>
     <canvas id="bezierCanvas"></canvas>
     <canvas id="equationCanvas"></canvas>
+
     <input  id="equationInput" type="text">
+
+    <script src="equationCanvas.js"></script>
+    <script src="bezierCanvas.js"></script>
+    <script src="surfaceCanvas.js"></script>
+    <script src="main.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -34,6 +39,7 @@
             height: 800px;
         }
         #bezierCanvas {
+            display: block;
         }
         #equationCanvas {
             display: none;
