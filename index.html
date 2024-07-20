@@ -8,8 +8,14 @@
 </head>
 <body>
     <div class="menu">
-        <p>Bezier Mode <input type="radio" name="switch" value="bezier" id="bezierMode" checked></p>
-        <p>Equation Mode <input type="radio" name="switch" value="equation" id="equationMode"></p>
+        <p>
+            <label for="bezierMode">Bezier Mode</label>
+            <input type="radio" name="switch" value="bezier" id="bezierMode" checked>
+        </p>
+        <p>
+            <label for="equationMode">Equation Mode </label>
+            <input type="radio" name="switch" value="equation" id="equationMode">
+        </p>
     </div>
     <canvas id="surfaceCanvas"></canvas>
     <canvas id="bezierCanvas"></canvas>
