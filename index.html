@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@13.0.3/lib/browser/math.min.js"></script>
 </head>
 <body>
     <div class="menu">
         <p>
             <label for="bezierMode">Bezier Mode</label>
-            <input type="radio" name="switch" value="bezier" id="bezierMode" checked>
+            <input type="radio" name="switch" value="bezier" id="bezierMode">
         </p>
         <p>
             <label for="equationMode">Equation Mode </label>
-            <input type="radio" name="switch" value="equation" id="equationMode">
+            <input type="radio" name="switch" value="equation" id="equationMode" checked>
         </p>
     </div>
     <canvas id="surfaceCanvas"></canvas>
     <canvas id="bezierCanvas"></canvas>
     <canvas id="equationCanvas"></canvas>
 
-    <input  id="equationInput" type="text">
+    <div id="equationInput">
+        <input  id="equationText" type="text">
+        <button id="equationBtn">Graph</button>
+    </div>
 
     <script src="equationCanvas.js"></script>
     <script src="bezierCanvas.js"></script>
@@ -51,7 +55,8 @@
             display: none;
         }
         #equationInput {
-            display: none;
+            position: absolute;
+            display: block;
         }
         .menu {
             position: absolute;
@@ -64,6 +69,12 @@
         .menu p {
             display: flex;
             gap: 0.25rem;
+        }
+        .menu * {
+            cursor: pointer;
+        }
+        button {
+            cursor: pointer;
         }
     </style>
 </body>

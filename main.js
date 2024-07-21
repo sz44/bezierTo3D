@@ -5,20 +5,38 @@ const menu = document.querySelector(".menu");
 const equationCanvas = document.querySelector("#equationCanvas");
 const bezierCanvas = document.querySelector("#bezierCanvas");
 
-let mode = "bezier";
+const equationText = document.querySelector("#equationText");
+const equationBtn = document.querySelector("#equationBtn");
+
+let eq = "";
+// math.evaluate('12 / (2.3 + 0.7)')
+equationBtn.addEventListener("click", (e) => {
+    eq = equationText.value;
+    console.log(eq);
+    console.log(math.evaluate("y=2*7"));
+});
+
+let mode = "equation";
+
+function switchMode(mode) {
+    if (mode === "bezier") {
+        bezierCanvas.style.display = "block";
+        equationCanvas.style.display = "none";
+        // equationInput.style.display = "none";
+    } else {
+        bezierCanvas.style.display = "none";
+        equationCanvas.style.display = "block";
+        // equationInput.style.display = "absolute";
+    }
+}
+
+switchMode(mode);
 
 menu.addEventListener("click", (e) => {
     if (e.target && e.target.matches("input[type=radio]")) {
         mode = e.target.value;
         console.log(mode);
-
-        if (mode === "bezier") {
-            bezierCanvas.style.display = "block";
-            equationCanvas.style.display = "none";
-        } else {
-            bezierCanvas.style.display = "none";
-            equationCanvas.style.display = "block";
-        }
+        switchMode(mode);
     }
 });
 
