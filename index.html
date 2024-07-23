@@ -24,7 +24,9 @@
 
     <div id="equationInput">
         <input  id="equationText" type="text">
-        <button id="equationBtn">Graph</button>
+        <button id="equationBtn">graph</button>
+        <label for="scaleX">zoom</label>
+        <input type="number" name="" id="scaleX" value="10">
     </div>
 
     <script src="equationCanvas.js"></script>
@@ -56,7 +58,10 @@
         }
         #equationInput {
             position: absolute;
-            display: block;
+            top: 5rem;
+            right: 60px;
+            display: flex;
+            flex-direction: column;
         }
         .menu {
             position: absolute;

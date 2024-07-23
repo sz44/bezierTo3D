@@ -16,10 +16,10 @@ function surfaceSketch(p) {
     };
     p.draw = () => {
         p.background(255);
-        // p.translate(0, -p.height / 2);
         // p.scale(1/2);
 
 		if (mode === "bezier") {
+			p.translate(0, -p.height / 2);
 			p.fill(p.color(green1Light));
 			for (let theta = 0; theta < p.TWO_PI; theta += angleStep) {
 				p.beginShape(p.QUAD_STRIP);
@@ -38,19 +38,26 @@ function surfaceSketch(p) {
 				p.endShape();
 			}
 		} else {
+			if (eq === "") {
+				return
+			}
 			p.fill(p.color(green1Light));
 			for (let theta = 0; theta < p.TWO_PI; theta += angleStep) {
 				p.beginShape(p.QUAD_STRIP);
 				for (let x = 0; x < 20; x += 1) {
 					let y = math.evaluate(eq.replaceAll('x', x)) 
 
+					if (y * scale > p.windowHeight/2) {
+						break
+					}
+
 					let newX1 = x * p.cos(theta);
 					let newZ1 = x * p.sin(theta);
 					let newX2 = x * p.cos(theta + angleStep);
 					let newZ2 = x * p.sin(theta + angleStep);
 	
-					p.vertex(newX1 * 20, -y, newZ1 * 20);
-					p.vertex(newX2 * 20, -y, newZ2 * 20);
+					p.vertex(newX1 * scale * 3, -y * scale * 3, newZ1 * scale * 3);
+					p.vertex(newX2 * scale * 3, -y * scale * 3, newZ2 * scale * 3);
 				}
 				p.endShape();
 			}

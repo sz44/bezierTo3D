@@ -8,7 +8,17 @@ const bezierCanvas = document.querySelector("#bezierCanvas");
 const equationText = document.querySelector("#equationText");
 const equationBtn = document.querySelector("#equationBtn");
 
+const scaleInput = document.querySelector("#scaleX");
+
+scaleInput.addEventListener("change", (e) => {
+    scale = e.target.value;
+});
+
 let eq = "";
+let scale = 5;
+
+scaleInput.value = scale;
+
 // math.evaluate('12 / (2.3 + 0.7)')
 equationBtn.addEventListener("click", (e) => {
     eq = equationText.value;
