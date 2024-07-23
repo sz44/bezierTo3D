@@ -44,7 +44,7 @@ function surfaceSketch(p) {
 			p.fill(p.color(green1Light));
 			for (let theta = 0; theta < p.TWO_PI; theta += angleStep) {
 				p.beginShape(p.QUAD_STRIP);
-				for (let x = 0; x < 20; x += 1) {
+				for (let x = 0; x < detail; x += 1) {
 					let y = math.evaluate(eq.replaceAll('x', x)) 
 
 					if (y * scale > p.windowHeight/2) {

@@ -2,6 +2,9 @@
 // const bezierMode = document.querySelector("#bezierMode");
 // const selectMode = document.querySelectorAll(".menu input[type=radio]");
 const menu = document.querySelector(".menu");
+const bezierMode = document.querySelector("#bezierMode");
+const equationMode = document.querySelector("#equationMode");
+
 const equationCanvas = document.querySelector("#equationCanvas");
 const bezierCanvas = document.querySelector("#bezierCanvas");
 
@@ -14,10 +17,11 @@ scaleInput.addEventListener("change", (e) => {
     scale = e.target.value;
 });
 
-let eq = "";
+let eq = "cos(x)";
 let scale = 5;
 
 scaleInput.value = scale;
+equationText.value = eq;
 
 // math.evaluate('12 / (2.3 + 0.7)')
 equationBtn.addEventListener("click", (e) => {
@@ -26,16 +30,18 @@ equationBtn.addEventListener("click", (e) => {
     console.log(math.evaluate("y=2*7"));
 });
 
-let mode = "equation";
+let mode = "bezier";
 
 function switchMode(mode) {
     if (mode === "bezier") {
         bezierCanvas.style.display = "block";
         equationCanvas.style.display = "none";
+        bezierMode.checked = true; 
         // equationInput.style.display = "none";
     } else {
         bezierCanvas.style.display = "none";
         equationCanvas.style.display = "block";
+        equationMode.checked = true;
         // equationInput.style.display = "absolute";
     }
 }

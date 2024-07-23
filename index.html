@@ -11,11 +11,11 @@
     <div class="menu">
         <p>
             <label for="bezierMode">Bezier Mode</label>
-            <input type="radio" name="switch" value="bezier" id="bezierMode">
+            <input type="radio" name="switch" value="bezier" id="bezierMode" checked>
         </p>
         <p>
             <label for="equationMode">Equation Mode </label>
-            <input type="radio" name="switch" value="equation" id="equationMode" checked>
+            <input type="radio" name="switch" value="equation" id="equationMode">
         </p>
     </div>
     <canvas id="surfaceCanvas"></canvas>
@@ -23,7 +23,7 @@
     <canvas id="equationCanvas"></canvas>
 
     <div id="equationInput">
-        <input  id="equationText" type="text">
+        <input  id="equationText" type="text" value="cos(x)">
         <button id="equationBtn">graph</button>
         <label for="scaleX">zoom</label>
         <input type="number" name="" id="scaleX" value="10">
